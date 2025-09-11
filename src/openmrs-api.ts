@@ -749,7 +749,7 @@ async function getConceptUuid(name: string): Promise<string> {
  * @private
  */
 const getActiveConditions = async (patientId: string) => {
-    const activeConditions = await getAllFhirQueryResults('/Condition?patient=${patientId}&clinical-status=active')
+    const activeConditions = await getAllFhirQueryResults(`/Condition?patient=${patientId}&clinical-status=active`)
     return (
         activeConditions
             .map((entry: any) => { 
