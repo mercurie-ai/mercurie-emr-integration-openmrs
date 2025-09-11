@@ -2,6 +2,10 @@
 
 This project is a middleware adapter that seamlessly integrates [Mercurie](https://www.mercurie.ai/), a medical conversation transcription and summarization service, with [OpenMRS](https://openmrs.org/), an open-source electronic medical record (EMR) system. It serves as a proof-of-concept to demonstrate how Mercurie can be connected to various EMRs to automate clinical documentation.
 
+See the adapter in action in this video:
+
+[![Mercurie OpenMRS Integration Video](https://img.youtube.com/vi/jYGUoWqMl9c/mqdefault.jpg)](https://www.youtube.com/watch?v=jYGUoWqMl9c&ab_channel=Mercurie)
+
 ## The Goal
 
 The primary goal of Mercurie is to alleviate the burden of medical documentation for physicians. By simply having a natural conversation with a patient, Mercurie can transcribe, understand, and structure the clinical information. This middleware shows that the structured output from Mercurie can be used to automatically and accurately populate a patient's chart in an EMR like OpenMRS, saving physicians valuable time and reducing administrative overhead.
@@ -139,3 +143,5 @@ All endpoints require an `Authorization: Bearer <your-api-key>` header.
 ## Extensibility
 
 The architecture of this middleware is designed to be a blueprint. By replacing the `openmrs-api.ts` module with a different implementation that communicates with another EMR's API, you can quickly adapt this integration for other systems. The core logic in `server.ts` and the API contract defined in `openapi.yaml` can remain largely the same, providing a consistent integration point for Mercurie.
+
+The schema for the Mercurie integration API and a list of available integration adapters are maintained on the [mercurie-ai/mercurie-emr-integration](https://github.com/mercurie-ai/mercurie-emr-integration) GitHub repository.
