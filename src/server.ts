@@ -58,7 +58,7 @@ app.get('/patients', requireApiKey, async (req: Request, res: Response<PatientLi
     try {
         // Use the FHIR service
         const patients = await OpenMRSFHIR.getPatients();
-        res.status(200).json({ patients });
+        res.status(200).json({ patient_lists: [ { list_name: "All Patients", patients } ] });
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error', message: (error as Error).message });
     }

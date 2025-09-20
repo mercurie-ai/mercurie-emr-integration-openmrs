@@ -113,7 +113,7 @@ type TitleCaseDiagnosis = KeysToTitleCase<Diagnosis>;
 
 // --- Data Transformation Functions ---
 
-function capitalizeFirstLetter(str) {
+function capitalizeFirstLetter(str: any) {
   if (typeof str !== 'string' || str.length === 0) {
     return str; // Handle empty or non-string inputs
   }
@@ -264,7 +264,7 @@ export const getEncounterNote = async (visitId: string): Promise<string | null> 
         if (visitNoteEncounterId) {
             const diagnoses = await getVisitDiagnoses(visitNoteEncounterId);
             if (diagnoses && diagnoses.length > 0) {
-                diagnoses.forEach(d => {
+                diagnoses.forEach((d: any) => {
                     markdownString += `- *${d.diagnosis}* - ${d.rank} - ${d.certainty}\n`
                 })
                 markdownString += "\n"
@@ -563,7 +563,7 @@ async function processDiagnoses(patientId: string, visitId: string, diagnoses: D
 
         // 1. Remove all existing diagnoses
         const existingDiagnoses = await getVisitDiagnoses(visitNoteEncounterId);
-        existingDiagnoses.forEach(d => {
+        existingDiagnoses.forEach((d: any) => {
             console.log(`-> Delete existing diagnosis: '${d.diagnosis}'`)
             openmrsRestApi.delete(`/patientdiagnoses/${d.uuid}`);
         });
@@ -716,7 +716,7 @@ async function getDrugUuid(name: string, strength: string) {
 
     try {
         const response = await openmrsRestApi.get(`/drug?q=${encodeURIComponent(name)}`);
-        const concept = response.data.results.find(c => c.display.toLowerCase().replaceAll(" ", "") === fullName.toLowerCase().replaceAll(" ", ""));
+        const concept = response.data.results.find((c: any) => c.display.toLowerCase().replaceAll(" ", "") === fullName.toLowerCase().replaceAll(" ", ""));
         if (concept) {
             return concept.uuid;
         }
@@ -731,7 +731,7 @@ async function getDrugUuid(name: string, strength: string) {
 async function getConceptUuid(name: string): Promise<string> {
     try {
         const response = await openmrsRestApi.get(`/concept?q=${encodeURIComponent(name)}`);
-        const concept = response.data.results.find(c => c.display.toLowerCase() === name.toLowerCase());
+        const concept = response.data.results.find((c: any) => c.display.toLowerCase() === name.toLowerCase());
         if (concept) {
             return concept.uuid;
         }
@@ -834,8 +834,8 @@ const getVisitDiagnoses = async (visitNoteId: string) => {
 
     return (
         diagnoses
-            .filter(d => d.voided == false)
-            .map((d) => {
+            .filter((d: any) => d.voided == false)
+            .map((d: any) => {
                 return {
                     uuid: d.uuid,
                     diagnosis: d.display,
@@ -904,7 +904,7 @@ async function getAllFhirQueryResults(queryUrl: string): Promise<any[]> {
     let entries: any[] = []
 
     do {
-        let response = await openmrsFhirApi.get(url)
+        let response: any = await openmrsFhirApi.get(url)
 
         entries = [...entries, ...(response.data.entry || [])]
 

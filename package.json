@@ -1,6 +1,6 @@
 {
   "name": "@mercurie/emr-integration-openmrs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Middleware to integrate Mercurie with OpenMRS.",
   "main": "dist/server.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@mercurie/emr-integration": "^1.0.1",
+    "@mercurie/emr-integration": "*",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.12",
